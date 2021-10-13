@@ -1,0 +1,83 @@
+if line[1] == '1' : line[1] = 'Adult' 
+    elif line[1] == '?' : line[1] = '?'
+    else: line[1] = 'Young'
+        
+    if line[4] == '?' : line[4] = 0
+    else: line[4] = int(line[4])
+        
+    if line[6] == '1' : line[6] = 'Normal' 
+    elif line[6] == '2' : line[6] = 'Warm' 
+    elif line[6] == '3' : line[6] = 'Cool'
+    elif line[6] == '?' : line[6] = '?'
+    else : line[6] = 'Cold'
+    
+    if line[7] == '1' : line[7] = 'Normal' 
+    elif line[7] == '2' : line[7] = 'increased' 
+    elif line[7] == '3' : line[7] = 'reduced'
+    elif line[7] == '?' : line[7] = '?'
+    else : line[7] = 'absent'
+        
+    if line[10] == '1' : line[10] = 'alert, no pain' 
+    elif line[10] == '2' : line[10] = 'depressed' 
+    elif line[10] == '3' : line[10] = 'intermittent mild pain'
+    elif line[10] == '4' : line[10] = 'intermittent severe pain'
+    elif line[10] == '5' : line[10] = 'continuous severe pain'
+    elif line[10] == '?' : line[10] = '?'
+        
+    if line[22] == '?' : line[22] = None
+    else: line[22] = int(line[22])
+    
+    if int(line[24][0:2]) < 12 :
+        if line[24][0:2] == '01': first = 'gastric'
+        elif line[24][0:2] == '02': first = 'sm intestine'
+        elif line[24][0:2] == '03': first = 'lg colon'
+        elif line[24][0:2] == '04': first = 'lg colon and cecum'
+        elif line[24][0:2] == '05': first = 'cecum'
+        elif line[24][0:2] == '06': first = 'transverse colon'
+        elif line[24][0:2] == '07': first = 'retum/descending colon'
+        elif line[24][0:2] == '08': first = 'uterus'
+        elif line[24][0:2] == '09': first = 'bladder'
+        elif line[24][0:2] == '11': first = 'all intestinal sites'
+        else : first = 'none'
+        if line[24][2] == '1': line[25] = 'simple'
+        elif line[24][2] == '2': line[25] = 'strangulation'
+        elif line[24][2] == '3': line[25] = 'inflammation'
+        else: line[25] = 'other'
+        if line[24][3] == '1': line[26] = 'mechanical'
+        elif line[24][3] == '2': line[26] = 'paralytic'
+        else : line[26] = 'n/a'
+        if line[24][4] == '1': line[26] += ' obturation'
+        elif line[24][4] == '2': line[26] += ' intrinsic'
+        elif line[24][4] == '3': line[26] += ' extrinsic'
+        elif line[24][4] == '4': line[26] += ' adynamic'
+        elif line[24][4] == '5': line[26] += ' volvulus/torsion'
+        elif line[24][4] == '6': line[26] += ' intussuption'
+        elif line[24][4] == '7': line[26] += ' thromboembolic'
+        elif line[24][4] == '8': line[26] += ' hernia'
+        elif line[24][4] == '9': line[26] += ' lipoma/slenic incarceration'
+        else : line[26] += ' n/a'
+            
+    else:
+        if line[24][0] == '1': first = 'gastric'
+        elif line[24][0] == '2': first = 'sm intestine'
+        elif line[24][0] == '3': first = 'lg colon'
+        elif line[24][0] == '4': first = 'lg colon and cecum'
+        if line[24][1] == '1': line[25] = 'simple'
+        elif line[24][1] == '2': line[25] = 'strangulation'
+        elif line[24][1] == '3': line[25] = 'inflammation'
+        else: line[25] = 'other'
+        if line[24][2] == '1': line[26] = 'mechanical'
+        elif line[24][2] == '2': line[26] = 'paralytic'
+        else : line[26] = 'n/a'
+        if line[24][3:5] == '01': line[26] += ' obturation'
+        elif line[24][3:5] == '02': line[26] += ' intrinsic'
+        elif line[24][3:5] == '03': line[26] += ' extrinsic'
+        elif line[24][3:5] == '04': line[26] += ' adynamic'
+        elif line[24][3:5] == '05': line[26] += ' volvulus/torsion'
+        elif line[24][3:5] == '06': line[26] += ' intussuption'
+        elif line[24][3:5] == '07': line[26] += ' thromboembolic'
+        elif line[24][3:5] == '08': line[26] += ' hernia'
+        elif line[24][3:5] == '09': line[26] += ' lipoma/slenic incarceration'
+        else : line[26] += ' displacement'
+    
+    line[24] = first
